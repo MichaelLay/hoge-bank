@@ -3,10 +3,7 @@ Documentation    This is a resource file, that can contain variables and keyword
 ...              Keywords defined here can be used where this user_transaction.resource in loaded.
 
 *** Variables ***
-${defined_fee_rate}    0.3
-
-${deposit_key}         I8N.AFTER_TRANSACTION_FINAL_DEPOSIT_KEY       
-${withdraw_key}        I8N.AFTER_TRANSACTION_FINAL_WITHDRAWAL_KEY
+${default_fee_rate}    0.3
 
 *** Keywords ***
 Make A Transaction
@@ -16,11 +13,11 @@ Make A Transaction
     IF                                                '${action}' == 'deposit'
     #Click deposit link - the element dose not has id or class attribute, we have to select it by index
     Click Link                                        (//a)[1]
-    Wait Until Element Is Visible                     //span[text() = '${deposit_key}']
+    Wait Until Element Is Visible                     //button[text() = 'Deposit']
     ELSE IF                                           '${action}' == 'withdraw'
     #Click deposit link - the element dose not has id or class attribute, we have to select it by index
     Click Link                                        (//a)[2]
-    Wait Until Element Is Visible                     //span[text() = '${withdraw_key}']
+    Wait Until Element Is Visible                     //button[text() = 'Withdraw']
     END
     Wait Until Element Is Visible                     //input
     Input Text                                        //input                               ${amount}
@@ -34,7 +31,7 @@ Verify Transaction Action
     [Return]               ${action}
 
 Verify And Return Transaction Fee
-    [Arguments]                  ${fee_rate}=${defined_fee_rate}                                                                     ${action}=${EMPTY}                           ${amount}=0
+    [Arguments]                  ${fee_rate}=${default_fee_rate}                                                                     ${action}=${EMPTY}                           ${amount}=0
     ${action}=                   Verify Transaction Action                                                                           action=${action}
     ${trans_fee}=                Evaluate                                                                                            ${amount} * ${fee_rate}
     ${trans_fee_text}            Evaluate                                                                                            "{:.2f}".format(${trans_fee})
