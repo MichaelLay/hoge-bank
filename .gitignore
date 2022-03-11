@@ -1,0 +1,7 @@
+*.xml
+*.html
+*.png
+.DS_store
+
+transaction_screenshots/
+signup_screenshots/
