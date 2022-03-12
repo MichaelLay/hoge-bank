@@ -17,11 +17,13 @@ Account Balance Should Update Every 10 Seconds After Deposit
     Sign Up Account
     Logout From Account
     Login To Account
-    Loop To Make A Transaction And Verify Account Balance    action=deposit        loop=5
+    ${current_balance}=                                      Get Current Account Balance
+    Loop To Make A Transaction And Verify Account Balance    action=deposit      current_balance=${current_balance}    loop=5
 
 Account Balance Should Update Every 10 Seconds After Withdraw
     Navigate to AnyLogi Website                              browser=${browser}
     Sign Up Account
     Logout From Account
     Login To Account
-    Loop To Make A Transaction And Verify Account Balance    action=withdraw       loop=5
+    ${current_balance}=                                      Get Current Account Balance
+    Loop To Make A Transaction And Verify Account Balance    action=withdraw     current_balance=${current_balance}    loop=5
