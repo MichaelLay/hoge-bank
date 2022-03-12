@@ -22,20 +22,28 @@ WebDriverManager will help you manage browsers version easier please visit [Inst
 2. Change directory to "hoge-bank"
 3. Run this command for all test suites 
 
->robot -v browser:{browser name} test_suites/
+> robot -v browser:{browser name} test_suites
 
 Example: 
 
->robot -v browser:chrome test_suites/
+> robot -v browser:chrome test_suites
 
 
 4. For specific test suite
 
->robot -v browser:{browser name} test_suites/{suite name}
+> robot -v browser:{browser name} test_suites/{suite name}
 
-Eample:
+Example:
 
 > robot -v browser:chrome test_suites/user_sign_up.robot
+
+5. For specific test case
+
+> robot -v browser:{browser name} -t "{test case}" test_suites/{suite name}
+
+Example:
+
+> robot -v browser:chrome -t "Username Cannot Be Blank" test_suites/user_sign_up.robot
 
 # The supported browsers
 <table border="1">
